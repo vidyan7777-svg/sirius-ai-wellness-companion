@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sirius AI | Create Account</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            font-family: "Inter", sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(130, 190, 255, 0.35),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(150, 120, 255, 0.25),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #eef5ff,
+                    #f8f7ff,
+                    #eefaf8
+                );
+
+            color: #243044;
+
+        }
+
+
+        /* =========================================
+           REGISTER CONTAINER
+        ========================================= */
+
+        .register-container {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            background: rgba(255, 255, 255, 0.92);
+
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+
+            border-radius: 28px;
+
+            padding: 38px 34px;
+
+            box-shadow:
+                0 20px 60px rgba(48, 63, 94, 0.12);
+
+            text-align: center;
+
+        }
+
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .logo {
+
+            width: 72px;
+
+            height: 72px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #7f9cf5
+                );
+
+            color: white;
+
+            font-size: 31px;
+
+            box-shadow:
+                0 12px 25px rgba(102, 126, 234, 0.25);
+
+        }
+
+
+        .brand-name {
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 27px;
+
+            font-weight: 700;
+
+            color: #263653;
+
+            letter-spacing: -0.5px;
+
+        }
+
+
+        .brand-name span {
+
+            color: #667eea;
+
+        }
+
+
+        .subtitle {
+
+            margin-top: 8px;
+
+            margin-bottom: 28px;
+
+            color: #7b8497;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-group {
+
+            text-align: left;
+
+            margin-bottom: 16px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #465269;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+
+        }
+
+
+        .input-wrapper i {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #9aa5b7;
+
+            font-size: 14px;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 15px 0 43px;
+
+            border: 1px solid #e1e6ef;
+
+            border-radius: 13px;
+
+            outline: none;
+
+            background: #fbfcfe;
+
+            color: #29364d;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: 13px;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        input::placeholder {
+
+            color: #a6afbd;
+
+        }
+
+
+        input:focus {
+
+            border-color: #7c91ed;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(124, 145, 237, 0.10);
+
+        }
+
+
+        /* =========================================
+           SIGN UP BUTTON
+        ========================================= */
+
+        .signup-btn {
+
+            width: 100%;
+
+            height: 50px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #7f9cf5
+                );
+
+            color: white;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 20px rgba(102, 126, 234, 0.20);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+
+        }
+
+
+        .signup-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 25px rgba(102, 126, 234, 0.28);
+
+        }
+
+
+        .signup-btn:active {
+
+            transform: translateY(0);
+
+        }
+
+
+        .signup-btn i {
+
+            margin-right: 7px;
+
+        }
+
+
+        /* =========================================
+           LOGIN LINK
+        ========================================= */
+
+        .login-text {
+
+            margin-top: 23px;
+
+            color: #858ea0;
+
+            font-size: 12px;
+
+        }
+
+
+        .login-text a {
+
+            color: #667eea;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+        }
+
+
+        .login-text a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =========================================
+           PRIVACY MESSAGE
+        ========================================= */
+
+        .privacy-note {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            margin-top: 24px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #edf0f5;
+
+            color: #9aa2b1;
+
+            font-size: 10px;
+
+        }
+
+
+        .privacy-note i {
+
+            color: #7c91ed;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 480px) {
+
+            body {
+
+                padding: 18px;
+
+            }
+
+
+            .register-container {
+
+                padding: 32px 24px;
+
+                border-radius: 23px;
+
+            }
+
+
+            .brand-name {
+
+                font-size: 24px;
+
+            }
+
+
+            .logo {
+
+                width: 64px;
+
+                height: 64px;
+
+                font-size: 27px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="register-container">
+
+
+        <!-- Logo -->
+
+        <div class="logo">
+
+            <i class="fa-solid fa-star"></i>
+
+        </div>
+
+
+        <!-- Brand -->
+
+        <h1 class="brand-name">
+
+            Sirius <span>AI</span>
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            Create your private space
+            for reflection and wellbeing.
+
+        </p>
+
+
+        <!-- Register Form -->
+
+        <form method="POST">
+
+
+            <!-- Username -->
+
+            <div class="form-group">
+
+                <label for="username">
+
+                    Username
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <i class="fa-regular fa-user"></i>
+
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        placeholder="Choose a username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="form-group">
+
+                <label for="password">
+
+                    Password
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Sign Up -->
+
+            <button
+                type="submit"
+                class="signup-btn"
+            >
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Create Account
+
+            </button>
+
+
+        </form>
+
+
+        <!-- Login -->
+
+        <p class="login-text">
+
+            Already have an account?
+
+            <a href="/">
+
+                Login
+
+            </a>
+
+        </p>
+
+
+        <!-- Privacy -->
+
+        <div class="privacy-note">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            Your emotional space is private.
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

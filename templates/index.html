@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sirius AI | Emotional Wellness</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Your CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body data-username="{{ username|e }}">
+
+<div class="app-shell">
+
+    <!-- =====================================================
+         MOBILE OVERLAY
+    ====================================================== -->
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-logo">
+                <span>✦</span>
+            </div>
+
+            <div>
+                <h2>Sirius</h2>
+                <p>Emotional Wellness</p>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-user">
+
+            <div class="user-avatar">
+                {{ username[0]|upper }}
+            </div>
+
+            <div class="user-info">
+                <strong>{{ username }}</strong>
+                <span>Wellness journey</span>
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-label">MAIN</p>
+
+            <button
+                class="nav-item active"
+                data-section="dashboardSection">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="chatSection">
+
+                <i class="fa-solid fa-message"></i>
+
+                <span>AI Chat</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="moodSectionPage">
+
+                <i class="fa-solid fa-face-smile"></i>
+
+                <span>Mood Tracker</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="journalSection">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>Journal</span>
+
+            </button>
+
+
+            <p class="nav-label">WELLNESS</p>
+
+
+            <button
+                class="nav-item"
+                data-section="breathingSection">
+
+                <i class="fa-solid fa-wind"></i>
+
+                <span>Breathing</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="relaxSection">
+
+                <i class="fa-solid fa-music"></i>
+
+                <span>Relax</span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="analyticsSection">
+
+                <i class="fa-solid fa-chart-simple"></i>
+
+                <span>Insights</span>
+
+            </button>
+
+
+            <p class="nav-label">ACCOUNT</p>
+
+
+            <button
+                class="nav-item"
+                data-section="settingsSection">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </button>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div>
+                   <strong>Take care of yourself</strong>
+                   <p>Small steps matter.</p>
+                </div>
+
+            </div>
+
+            <button id="logoutBtn" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN AREA
+    ====================================================== -->
+
+    <div class="main-area">
+
+
+        <!-- =================================================
+             TOP HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button
+                    id="menuBtn"
+                    class="icon-button mobile-menu">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="page-title">
+
+                    <span id="pageGreeting">Your wellness space</span>
+
+                    <h1 id="pageTitle">Dashboard</h1>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    id="themeBtn"
+                    class="icon-button"
+                    title="Change theme">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+                <div class="header-profile">
+
+                    <div class="profile-avatar">
+                        {{ username[0]|upper }}
+                    </div>
+
+                    <div class="profile-name">
+                        {{ username }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <main class="content-area">
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================== -->
+
+            <section
+                id="dashboardSection"
+                class="page-section active-section">
+
+
+                <!-- WELCOME -->
+
+                <div class="welcome-card">
+
+                    <div class="welcome-content">
+
+                        <span class="eyebrow">
+                            <i class="fa-solid fa-sparkles"></i>
+                            YOUR WELLNESS SPACE
+                        </span>
+
+                        <h2>
+                            Hello, {{ username }} 👋
+                        </h2>
+
+                        <p>
+                            Take a moment for yourself.
+                            How are you feeling today?
+                        </p>
+
+
+                        <button
+                            class="primary-btn"
+                            data-open-section="chatSection">
+
+                            <i class="fa-solid fa-message"></i>
+
+                            Talk to Sirius
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="welcome-orb">
+
+                        <div class="orb-glow"></div>
+
+                        <div class="orb">
+                            ✦
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MOOD CHECK -->
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-label">MOOD CHECK-IN</span>
+
+                        <h2>How are you feeling?</h2>
+
+                    </div>
+
+                    <span class="today-label">
+                        Today
+                    </span>
+
+                </div>
+
+
+                <div class="mood-cards">
+
+                    <button
+    class="moodCard"
+    type="button"
+    data-mood="happy">
+
+    😊
+    <h3>Happy</h3>
+
+</button>
+
+
+<button
+    class="moodCard"
+    type="button"
+    data-mood="calm">
+
+    😌
+    <h3>Calm</h3>
+
+</button>
+
+
+<button
+    class="moodCard"
+    type="button"
+    data-mood="sad">
+
+    😔
+    <h3>Sad</h3>
+
+</button>
+
+
+<button
+    class="moodCard"
+    type="button"
+    data-mood="stressed">
+
+    😣
+    <h3>Stress</h3>
+
+</button>
+
+
+<button
+    class="moodCard"
+    type="button"
+    data-mood="tired">
+
+    😴
+    <h3>Tired</h3>
+
+</button>
+
+                </div>
+
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-label">QUICK ACCESS</span>
+                        <h2>Take care of yourself</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="quick-grid">
+
+
+                    <button
+                        class="feature-card"
+                        data-open-section="chatSection">
+
+                        <div class="feature-icon chat-icon">
+                            <i class="fa-solid fa-message"></i>
+                        </div>
+
+                        <div>
+                            <h3>AI Chat</h3>
+
+                            <p>
+                                Talk openly with Sirius.
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+                    </button>
+
+
+                    <button
+                        class="feature-card"
+                        data-open-section="journalSection">
+
+                        <div class="feature-icon journal-icon">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                        <div>
+                            <h3>Journal</h3>
+
+                            <p>
+                                Put your thoughts into words.
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+                    </button>
+
+
+                    <button
+                        class="feature-card"
+                        data-open-section="breathingSection">
+
+                        <div class="feature-icon breathing-icon">
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+
+                        <div>
+                            <h3>Breathing</h3>
+
+                            <p>
+                                Slow down and breathe.
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+                    </button>
+
+
+                    <button
+                        class="feature-card"
+                        data-open-section="analyticsSection">
+
+                        <div class="feature-icon analytics-icon">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </div>
+
+                        <div>
+                            <h3>Insights</h3>
+
+                            <p>
+                                Understand your mood patterns.
+                            </p>
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- QUOTE + WELLNESS -->
+
+                <div class="dashboard-bottom-grid">
+
+
+                    <div class="quote-card">
+
+                        <div class="quote-top">
+
+                            <span class="quote-icon">
+                                ✦
+                            </span>
+
+                            <span>
+                                DAILY REMINDER
+                            </span>
+
+                        </div>
+
+                        <blockquote id="dailyQuote">
+                         “You don't have to have everything figured out today.”
+                        </blockquote>
+
+                        <p id="quoteMessage">
+                         Be gentle with yourself.
+                        </p>
+
+                    </div>
+
+
+                    <div class="wellness-card">
+
+                        <div class="wellness-heading">
+
+                            <div>
+
+                                <span class="small-label">
+                                    TODAY
+                                </span>
+
+                                <h3>
+                                    Wellness check
+                                </h3>
+
+                            </div>
+
+                            <i class="fa-solid fa-heart-pulse"></i>
+
+                        </div>
+
+
+                        <div class="wellness-score-row">
+
+                            <div class="wellness-circle">
+
+                                <span id="wellnessScore">
+                                    84
+                                </span>
+
+                                <small>/100</small>
+
+                            </div>
+
+
+                            <div class="wellness-text">
+
+                                <strong id="wellnessMessage">
+                                    You're doing well.
+                                </strong>
+
+                                <p>
+                                    Keep taking small
+                                    positive steps.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CHAT SECTION
+            ================================================== -->
+
+            <section
+                id="chatSection"
+                class="page-section">
+
+
+                <div class="section-heading chat-heading">
+
+                    <div>
+
+                        <span class="small-label">
+                            AI WELLNESS COMPANION
+                        </span>
+
+                        <h2>
+                            Talk with Sirius
+                        </h2>
+
+                        <p>
+                            A calm space to share what's on your mind.
+                        </p>
+
+                    </div>
+
+
+            <div class="chat-header-actions">
+
+                <div class="online-status">
+                     <span class="online-dot"></span>
+                        Online
+                </div>
+
+                <button
+                    id="newChatBtn"
+                    class="chat-history-btn"
+                    type="button">
+                    <i class="fa-solid fa-plus"></i>
+                    New Chat
+                </button>
+
+                <button
+                    id="historyBtn"
+                    class="chat-history-btn"
+                    type="button">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                         History
+                </button>
+            
+            </div>
+        </div>
+
+
+                <!-- CHAT CARD -->
+
+                <div class="chat-card">
+
+
+                    <div
+                        id="chatBox"
+                        class="chat-box">
+
+
+                        <!-- AI INTRO -->
+
+                        <div class="ai-message-row">
+
+                            <div class="ai-avatar">
+                                ✦
+                            </div>
+
+                            <div class="ai-message">
+
+                                <div class="message-name">
+                                    Sirius AI
+                                </div>
+
+                                <p>
+                                    Hi {{ username }} 👋
+                                </p>
+
+                                <p>
+                                    I'm here to listen.
+                                    You can tell me how you're
+                                    feeling, ask a question,
+                                    or simply talk.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SUGGESTIONS -->
+
+                    <div class="chat-suggestions">
+
+                        <button
+                            class="suggestion-btn"
+                            data-message="I feel stressed today.">
+
+                            I'm feeling stressed
+
+                        </button>
+
+
+                        <button
+                            class="suggestion-btn"
+                            data-message="I feel lonely today.">
+
+                            I feel lonely
+
+                        </button>
+
+
+                        <button
+                            class="suggestion-btn"
+                            data-message="Help me relax.">
+
+                            Help me relax
+
+                        </button>
+
+
+                        <button
+                            class="suggestion-btn"
+                            data-message="I need some motivation.">
+
+                            I need motivation
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- INPUT -->
+
+                    <div class="chat-input-area">
+
+                        <button
+                            id="voiceBtn"
+                            class="chat-action-btn"
+                            title="Voice input">
+
+                            <i class="fa-solid fa-microphone"></i>
+
+                        </button>
+
+
+                        <input
+                            type="text"
+                            id="userInput"
+                            placeholder="Share what's on your mind..."
+                            autocomplete="off">
+
+
+                        <button
+                            id="sendBtn"
+                            class="send-btn"
+                            title="Send message">
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <p class="chat-disclaimer">
+                        Sirius AI is a wellness companion,
+                        not a replacement for professional care.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MOOD TRACKER
+            ================================================== -->
+
+            <section
+                id="moodSectionPage"
+                class="page-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="small-label">
+                            YOUR EMOTIONS
+                        </span>
+
+                        <h2>
+                            Mood Tracker
+                        </h2>
+
+                        <p>
+                            Notice your feelings and understand
+                            your patterns over time.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mood-tracker-layout">
+
+
+                    <!-- MOOD CHECK-IN -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h3>
+                                    Check in with yourself
+                                </h3>
+
+                                <p>
+                                    How are you feeling right now?
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-heart"></i>
+
+                        </div>
+
+
+                        <div class="tracker-moods">
+
+                            <button
+                                class="tracker-mood"
+                                data-mood="happy">
+
+                                <span>😊</span>
+                                Happy
+
+                            </button>
+
+
+                            <button
+                                class="tracker-mood"
+                                data-mood="calm">
+
+                                <span>😌</span>
+                                Calm
+
+                            </button>
+
+
+                            <button
+                                class="tracker-mood"
+                                data-mood="sad">
+
+                                <span>😔</span>
+                                Sad
+
+                            </button>
+
+
+                            <button
+                                class="tracker-mood"
+                                data-mood="stressed">
+
+                                <span>😣</span>
+                                Stressed
+
+                            </button>
+
+
+                            <button
+                                class="tracker-mood"
+                                data-mood="tired">
+
+                                <span>😴</span>
+                                Tired
+
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="moodStatus"
+                            class="status-message">
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- MOOD SUMMARY -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h3>
+                                    Your mood history
+                                </h3>
+
+                                <p>
+                                    A simple view of your check-ins.
+                                </p>
+
+                            </div>
+
+                            <button
+                                id="refreshMoodBtn"
+                                class="small-action-btn">
+
+                                <i class="fa-solid fa-rotate"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="chart-container">
+
+                            <canvas id="moodChart"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 JOURNAL
+            ================================================== -->
+
+            <section
+                id="journalSection"
+                class="page-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="small-label">
+                            PRIVATE REFLECTION
+                        </span>
+
+                        <h2>
+                            Your Journal
+                        </h2>
+
+                        <p>
+                            Write without judgment.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="journal-layout">
+
+
+                    <div class="journal-card">
+
+                        <div class="journal-header">
+
+                            <div class="journal-date">
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                <span id="journalDate">
+                                    Today
+                                </span>
+
+                            </div>
+
+                            <span class="journal-lock">
+                                <i class="fa-solid fa-lock"></i>
+                                Private
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="journalTitle"
+                            class="journal-title-input"
+                            type="text"
+                            placeholder="Give your entry a title...">
+
+
+                        <textarea
+                            id="journalText"
+                            class="journal-textarea"
+                            placeholder="How was your day? What are you thinking about?"></textarea>
+
+
+                        <div class="journal-footer">
+
+                            <span id="wordCount">
+                                0 words
+                            </span>
+
+                            <button 
+                               id="saveJournalBtn" 
+                               class="primary-btn"
+                               type="button">
+
+                               <i class="fa-solid fa-floppy-disk"></i>
+
+                               <span id="saveJournalText">Save Entry</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="journal-tips">
+
+                        <div class="tip-card">
+
+                            <span>💭</span>
+
+                            <div>
+
+                                <h3>
+                                    Try writing about...
+                                </h3>
+
+                                <p>
+                                    Something that made you
+                                    smile today.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tip-card">
+
+                            <span>🌱</span>
+
+                            <div>
+
+                                <h3>
+                                    Practice gratitude
+                                </h3>
+
+                                <p>
+                                    Name one small thing
+                                    you're thankful for.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tip-card">
+
+                            <span>✨</span>
+
+                            <div>
+
+                                <h3>
+                                    Look forward
+                                </h3>
+
+                                <p>
+                                    What is one kind thing
+                                    you can do for yourself tomorrow?
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- =================================================
+                     JOURNAL HISTORY
+                ================================================== -->
+
+                <div class="journal-history-panel">
+
+                    <div class="journal-history-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                YOUR REFLECTIONS
+                            </span>
+
+                            <h3>
+                                Journal History
+                            </h3>
+
+                            <p>
+                                Your saved entries appear here.
+                            </p>
+
+                        </div>
+
+                        <button
+                            id="clearJournalBtn"
+                            class="secondary-btn"
+                            type="button">
+
+                            <i class="fa-solid fa-trash-can"></i>
+
+                            Clear All
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="journalHistory"
+                        class="journal-history">
+
+                        <div class="empty-journal">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                            <p>
+                                No journal entries yet.
+                            </p>
+
+                            <span>
+                                Write something above and save it.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+
+
+            <!-- =================================================
+                 BREATHING
+            ================================================== -->
+
+            <section
+                id="breathingSection"
+                class="page-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="small-label">
+                            TAKE A MOMENT
+                        </span>
+
+                        <h2>
+                            Breathing Space
+                        </h2>
+
+                        <p>
+                            Follow the circle and slow your breathing.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="breathing-card">
+
+
+                    <div class="breathing-content">
+
+                        <div
+                            id="breathCircle"
+                            class="breathing-circle">
+
+                            <div class="breathing-inner">
+
+                                <span id="breathText">
+                                    Ready
+                                </span>
+
+                                <small id="breathTimer">
+                                    4
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <h3 id="breathingInstruction">
+                            Prepare to breathe
+                        </h3>
+
+                        <p>
+                            Inhale slowly, hold gently,
+                            and exhale completely.
+                        </p>
+
+
+                        <div class="breathing-controls">
+
+                            <button
+                                id="startBreathingBtn"
+                                class="primary-btn">
+
+                                <i class="fa-solid fa-play"></i>
+
+                                Start Exercise
+
+                            </button>
+
+
+                            <button
+                                id="stopBreathingBtn"
+                                class="secondary-btn">
+
+                                Stop
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="breathing-info">
+
+                        <div class="breathing-step">
+
+                            <span>1</span>
+
+                            <div>
+                                <strong>Inhale</strong>
+                                <p>Slowly breathe in.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="breathing-step">
+
+                            <span>2</span>
+
+                            <div>
+                                <strong>Hold</strong>
+                                <p>Stay relaxed.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="breathing-step">
+
+                            <span>3</span>
+
+                            <div>
+                                <strong>Exhale</strong>
+                                <p>Release the tension.</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RELAX
+            ================================================== -->
+
+            <section
+                id="relaxSection"
+                class="page-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="small-label">
+                            CREATE CALM
+                        </span>
+
+                        <h2>
+                            Relaxation Space
+                        </h2>
+
+                        <p>
+                            Choose something peaceful and take a break.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="relax-grid">
+
+                    <div class="sound-card" data-sound="rain">
+
+    <div class="sound-icon">🌧️</div>
+
+    <h3>Rain</h3>
+
+    <p>Soft rainfall</p>
+
+    <button
+        class="sound-control"
+        type="button"
+        aria-label="Play rain">
+
+        <i class="fa-solid fa-play"></i>
+
+    </button>
+
+    <audio
+        class="relax-audio"
+        preload="auto"
+        loop>
+
+        <source
+            src="{{ url_for('static', filename='audio/rain.wav') }}"
+            type="audio/wav">
+
+    </audio>
+
+</div>
+
+                    <div class="sound-card" data-sound="ocean">
+
+    <div class="sound-icon">🌊</div>
+
+    <h3>Ocean</h3>
+
+    <p>Gentle waves</p>
+
+    <button
+        class="sound-control"
+        type="button"
+        aria-label="Play ocean">
+
+        <i class="fa-solid fa-play"></i>
+
+    </button>
+
+    <audio
+        class="relax-audio"
+        preload="auto"
+        loop>
+
+        <source
+            src="{{ url_for('static', filename='audio/ocean.wav') }}"
+            type="audio/wav">
+
+    </audio>
+
+</div>
+
+                    <div class="sound-card" data-sound="fireplace">
+
+    <div class="sound-icon">🔥</div>
+
+    <h3>Fireplace</h3>
+
+    <p>Warm ambience</p>
+
+    <button
+        class="sound-control"
+        type="button"
+        aria-label="Play fireplace">
+
+        <i class="fa-solid fa-play"></i>
+
+    </button>
+
+    <audio
+        class="relax-audio"
+        preload="auto"
+        loop>
+
+        <source
+            src="{{ url_for('static', filename='audio/fireplace.wav') }}"
+            type="audio/wav">
+
+    </audio>
+
+</div>
+
+                    <div class="sound-card" data-sound="piano">
+
+    <div class="sound-icon">🎹</div>
+
+    <h3>Piano</h3>
+
+    <p>Calm melody</p>
+
+    <button
+        class="sound-control"
+        type="button"
+        aria-label="Play piano">
+
+        <i class="fa-solid fa-play"></i>
+
+    </button>
+
+    <audio
+        class="relax-audio"
+        preload="auto"
+        loop>
+
+        <source
+            src="{{ url_for('static', filename='audio/piano.wav') }}"
+            type="audio/wav">
+
+    </audio>
+
+</div>
+
+                </div>
+
+                <div class="relax-player">
+                    <div class="relax-player-icon">🎵</div>
+                    <div class="relax-player-info">
+                        <strong id="nowPlaying">Nothing playing</strong>
+                        <span>Choose a sound above. It loops gently until you stop it.</span>
+                    </div>
+                    <button id="stopSoundBtn" class="secondary-btn" type="button">
+                        <i class="fa-solid fa-stop"></i> Stop
+                    </button>
+                </div>
+
+                <div class="relax-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <p>These are local audio files included with Sirius, so the relaxation area works without an external music website.</p>
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ANALYTICS
+            ================================================== -->
+
+            <section
+                id="analyticsSection"
+                class="page-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="small-label">
+                            YOUR PROGRESS
+                        </span>
+
+                        <h2>
+                            Wellness Insights
+                        </h2>
+
+                        <p>
+                            Learn more about your emotional patterns.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            😊
+                        </div>
+
+                        <span>
+                            Happy check-ins
+                        </span>
+
+                        <strong id="happyCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            😌
+                        </div>
+
+                        <span>
+                            Calm check-ins
+                        </span>
+
+                        <strong id="calmCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            😔
+                        </div>
+
+                        <span>
+                            Sad check-ins
+                        </span>
+
+                        <strong id="sadCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            😣
+                        </div>
+
+                        <span>
+                            Stress check-ins
+                        </span>
+
+                        <strong id="stressCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="insight-panel">
+
+                    <div class="insight-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Remember
+                        </h3>
+
+                        <p>
+                            Mood tracking isn't about judging
+                            your emotions. It's about noticing
+                            patterns and understanding yourself
+                            with more kindness.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SETTINGS
+            ================================================== -->
+
+            <section
+                id="settingsSection"
+                class="page-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="small-label">
+                            PERSONALIZE
+                        </span>
+
+                        <h2>
+                            Settings
+                        </h2>
+
+                        <p>
+                            Make Sirius feel comfortable for you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-panel">
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <div class="setting-icon">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Dark mode
+                                </strong>
+
+                                <p>
+                                    Use a darker appearance.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            id="settingsThemeBtn"
+                            class="toggle-switch">
+
+                            <span></span>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <div class="setting-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Your account
+                                </strong>
+
+                                <p>
+                                    Logged in as {{ username }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <div class="setting-icon">
+                                <i class="fa-solid fa-shield-heart"></i>
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Wellness reminder
+                                </strong>
+
+                                <p>
+                                    Take a few minutes for yourself each day.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="app-footer">
+
+            <span>
+                ✦ Sirius AI
+            </span>
+
+            <span>
+                Your emotional wellness companion
+            </span>
+
+        </footer>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    id="toast"
+    class="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastMessage">
+        Done
+    </span>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+    src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+</body>
+</html>
